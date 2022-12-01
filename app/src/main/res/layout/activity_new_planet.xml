@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".NewPlanetActivity">
+
+    <!--edit text for our planets name-->
+    <EditText
+        android:id="@+id/idEdtPlanetName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Enter Planet Name" />
+
+    <!--edit text for our planets size-->
+    <EditText
+        android:id="@+id/idEdtPlanetSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Enter Planet Size" />
+
+    <!--edit text for planet distance to sun-->
+    <EditText
+        android:id="@+id/idEdtPlanetDistancetoSun"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Enter Planets Distance to Sun" />
+
+    <!--button for saving planet to room database-->
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose your planet's image"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="343dp"
+        android:background="#FFFFFF"
+        android:columnCount="2"
+        android:rowCount="4">
+
+
+        <ImageView
+            android:id="@+id/planet1IMG"
+            android:layout_width="176dp"
+            android:layout_height="90dp"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_margin="10dp"
+            android:background="#CACACA"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/planet1" />
+
+        <ImageView
+            android:id="@+id/planet2IMG"
+            android:layout_width="176dp"
+            android:layout_height="90dp"
+            android:layout_margin="10dp"
+            android:background="#CACACA"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/planet2" />
+
+        <ImageView
+            android:id="@+id/planet3IMG"
+            android:layout_width="176dp"
+            android:layout_height="90dp"
+            android:layout_margin="10dp"
+            android:background="#CACACA"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/planet3" />
+
+        <ImageView
+            android:id="@+id/planet4IMG"
+            android:layout_width="176dp"
+            android:layout_height="90dp"
+            android:layout_margin="10dp"
+            android:background="#CACACA"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/planet4" />
+
+        <ImageView
+            android:id="@+id/planet5IMG"
+            android:layout_width="176dp"
+            android:layout_height="90dp"
+            android:layout_margin="10dp"
+            android:background="#CACACA"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/planet5" />
+
+        <ImageView
+            android:id="@+id/planet6IMG"
+            android:layout_width="176dp"
+            android:layout_height="90dp"
+            android:layout_margin="10dp"
+            android:background="#CACACA"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/planet6" />
+
+    </GridLayout>
+
+    <Button
+        android:id="@+id/idBtnSavePlanet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:text="Save your Planet"
+        android:textAllCaps="false"
+        app:backgroundTint="#3F51B5" />
+
+</LinearLayout>
