@@ -17,57 +17,61 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
+// Main activty class
 public class MainActivity extends AppCompatActivity {
 
-    // creating a variables for our recycler view.
+    // Variable declarations,
+    // recyclerview is used to display list
+    // final int planet and edit declarations
     private RecyclerView planetsRV;
     private static final int ALL_PLANET_REQUEST = 1;
     private static final int EDIT_PLANET_REQUEST = 2;
     private ViewModal viewmodal;
 
+
+    //method to set variables on creation
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //set layout to activity main file
         setContentView(R.layout.activity_main);
 
-        // initializing our variable for our recycler view and fab.
+        //set recyclerview to planetsRV variable
         planetsRV = findViewById(R.id.idRVPlanets);
         FloatingActionButton floatingaddplanetbutton = findViewById(R.id.addplanetbutton);
 
-        // adding on click listener for floating action button.
+        //On click listener method to act on add planet button
         floatingaddplanetbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // starting a new activity for adding a new course
-                // and passing a constant value in it.
+                //using intent to open new planet activity
                 Intent intent = new Intent(MainActivity.this, NewPlanetActivity.class);
+
+                //Activity Result Launcher is called here to start add planet activity
                 startActivityForResult(intent, ALL_PLANET_REQUEST);
             }
         });
 
-        // setting layout manager to our adapter class.
+        //set planetsRV to linerlayout with fixedsize
         planetsRV.setLayoutManager(new LinearLayoutManager(this));
         planetsRV.setHasFixedSize(true);
 
-        // initializing adapter for recycler view.
+        //declaring adapter variable
         final PlanetRecyclerViewAdapter adapter = new PlanetRecyclerViewAdapter();
 
-        // setting adapter class for recycler view.
+        //setting adapter to planetsRV adapter
         planetsRV.setAdapter(adapter);
-
-        // passing a data from view modal.
         viewmodal = ViewModelProviders.of(this).get(ViewModal.class);
 
-        // below line is use to get all the courses from view modal.
+        //
         viewmodal.getAllPlanets().observe(this, new Observer<List<PlanetModal>>() {
             @Override
             public void onChanged(List<PlanetModal> models) {
-                // when the data is changed in our models we are
-                // adding that list to our adapter class.
+                //
                 adapter.submitList(models);
             }
         });
-        // below method is use to add swipe to delete method for item of recycler view.
+        //
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -76,20 +80,17 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                // on recycler view item swiped then we are deleting the item of our recycler view.
+                //
                 viewmodal.delete(adapter.getPlanetAt(viewHolder.getAdapterPosition()));
                 Toast.makeText(MainActivity.this, "Planet deleted", Toast.LENGTH_SHORT).show();
             }
         }).
-                // below line is use to attach this to recycler view.
-                        attachToRecyclerView(planetsRV);
-        // below line is use to set item click listener for our item of recycler view.
+                attachToRecyclerView(planetsRV);
+        //
         adapter.setOnItemClickListener(new PlanetRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(PlanetModal model) {
-                // after clicking on item of recycler view
-                // we are opening a new activity and passing
-                // a data to our activity.
+                //
                 Intent intent = new Intent(MainActivity.this, NewPlanetActivity.class);
                 intent.putExtra(NewPlanetActivity.EXTRA_ID, model.getId());
                 intent.putExtra(NewPlanetActivity.EXTRA_PLANET_NAME, model.getPlanetName());
@@ -97,8 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(NewPlanetActivity.EXTRA_PLANETDISTANCE, model.getPlanetDistancetoSun());
                 intent.putExtra(NewPlanetActivity.EXTRA_PLANETIMG, model.getPlanetIMAGE());
 
-                // below line is to start a new activity and
-                // adding a edit course constant.
+                //
                 startActivityForResult(intent, EDIT_PLANET_REQUEST);
             }
         });

@@ -6,35 +6,31 @@ import androidx.room.Query;
 import androidx.room.Update;
 import java.util.List;
 
-// Adding annotation
-// to our Dao class
+//DAO CLASS
 @androidx.room.Dao
 public interface Dao {
 
-    // below method is use to
-    // add data to database.
+    // method to add data to planets.
     @Insert
     void insert(PlanetModal model);
 
-    // below method is use to update
-    // the data in our database.
+    // method to update the data in planets.
     @Update
     void update(PlanetModal model);
 
-    // below line is use to delete a
-    // specific course in our database.
+    // delete a planet from the planets
     @Delete
     void delete(PlanetModal model);
 
-    // on below line we are making query to
-    // delete all courses from our database.
+    //delete all planets from planets using SQL query
     @Query("DELETE FROM planet_table")
     void deleteAllPlanets();
 
-    // below line is to read all the courses from our database.
-    // in this we are ordering our courses in ascending order
-    // with our course name.
-    @Query("SELECT * FROM planet_table ORDER BY planetName ASC")
+    // display all planets from planets in order of planet size
+    @Query("SELECT * FROM planet_table ORDER BY planetsize ASC")
     LiveData<List<PlanetModal>> getAllPlanets();
+
+    //search function
+
 }
 

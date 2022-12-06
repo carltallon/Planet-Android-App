@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class NewPlanetActivity extends AppCompatActivity {
 
-    // creating a variables for our button and edittext.
+    //
     private EditText planetNameEdt, planetsizeEdt, planetDistancetoSunEdt;
     private Button planetBtn;
     private ImageView planetIMG1,planetIMG2,planetIMG3,planetIMG4,planetIMG5,planetIMG6;
@@ -27,8 +27,7 @@ public class NewPlanetActivity extends AppCompatActivity {
 
     private static final int CHOOSE_IMAGE_REQUEST = 1;
 
-    // creating a constant string variable for our
-    // course name, description and duration.
+    //
     public static final String EXTRA_ID = "com.example.msdassignment.EXTRA_ID";
     public static final String EXTRA_PLANET_NAME = "com.example.msdassignment.EXTRA_PLANET_NAME";
     public static final String EXTRA_PLANETSIZE = "com.example.msdassignment.EXTRA_PLANETSIZE";
@@ -40,12 +39,13 @@ public class NewPlanetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_planet);
 
-        // initializing our variables for each view.
+        //
         planetNameEdt = findViewById(R.id.idEdtPlanetName);
         planetsizeEdt = findViewById(R.id.idEdtPlanetSize);
         planetDistancetoSunEdt = findViewById(R.id.idEdtPlanetDistancetoSun);
         planetBtn = findViewById(R.id.idBtnSavePlanet);
 
+        //
         planetIMG1 = findViewById(R.id.planet1IMG);
         planetIMG2 = findViewById(R.id.planet2IMG);
         planetIMG3 = findViewById(R.id.planet3IMG);
@@ -54,24 +54,20 @@ public class NewPlanetActivity extends AppCompatActivity {
         planetIMG6 = findViewById(R.id.planet6IMG);
 
 
-        // below line is to get intent as we
-        // are getting data via an intent.
+        //
         Intent intent = getIntent();
         if (intent.hasExtra(EXTRA_ID)) {
-            // if we get id for our data then we are
-            // setting values to our edit text fields.
             planetNameEdt.setText(intent.getStringExtra(EXTRA_PLANET_NAME));
             planetsizeEdt.setText(intent.getStringExtra(EXTRA_PLANETSIZE));
             planetDistancetoSunEdt.setText(intent.getStringExtra(EXTRA_PLANETDISTANCE));
         }
 
 
-        // adding on click listener for our save button.
+        //
         planetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // getting text value from edittext and validating if
-                // the text fields are empty or not.
+                //
                 String planetName = planetNameEdt.getText().toString();
                 String planetSize = planetsizeEdt.getText().toString();
                 String planetDistancetoSun = planetDistancetoSunEdt.getText().toString();
@@ -80,7 +76,7 @@ public class NewPlanetActivity extends AppCompatActivity {
                     Toast.makeText(NewPlanetActivity.this, "Please enter the valid planet details.", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                // calling a method to save our course
+                //
                 savePlanet(planetName, planetSize, planetDistancetoSun,planetIMAGE);
                 finish();
             }
@@ -147,26 +143,24 @@ public class NewPlanetActivity extends AppCompatActivity {
     }
 
     private void savePlanet(String planetName, String planetSize, String planetDistancetoSun, String planetIMAGE) {
-        // inside this method we are passing
-        // all the data via an intent.
+        //
         Intent data = new Intent();
 
-        // in below line we are passing all our course detail.
+        //
         data.putExtra(EXTRA_PLANET_NAME, planetName);
         data.putExtra(EXTRA_PLANETSIZE, planetSize);
         data.putExtra(EXTRA_PLANETDISTANCE, planetDistancetoSun);
         data.putExtra(EXTRA_PLANETIMG, planetIMAGE);
         int id = getIntent().getIntExtra(EXTRA_ID, -1);
         if (id != -1) {
-            // in below line we are passing our id.
             data.putExtra(EXTRA_ID, id);
         }
 
-        // at last we are setting result as data.
+        //
         setResult(RESULT_OK, data);
 
-        // displaying a toast message after adding the data
-        Toast.makeText(this, "Planet has been saved to Room Database. ", Toast.LENGTH_SHORT).show();
+        //
+        Toast.makeText(this, "Planet " + planetName + "has been added. ", Toast.LENGTH_SHORT).show();
     }
 
 

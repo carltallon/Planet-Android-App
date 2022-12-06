@@ -16,7 +16,7 @@
         android:layout_margin="5dp"
         android:orientation="vertical">
 
-        <!--text view for our course name-->
+        <!---->
         <ImageView
             android:id="@+id/planetIMGlist"
             android:layout_width="match_parent"
@@ -33,7 +33,7 @@
             android:textColor="@color/black"
             android:textSize="24sp" />
 
-        <!--text view for our course duration-->
+        <!---->
         <TextView
             android:id="@+id/idPlanetsize"
             android:layout_width="match_parent"
@@ -44,7 +44,7 @@
             android:textColor="@color/black"
             android:textSize="22sp" />
 
-        <!--text view for our course description-->
+        <!---->
         <TextView
             android:id="@+id/idPlanetDistancetoSun"
             android:layout_width="match_parent"

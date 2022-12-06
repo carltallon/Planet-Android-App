@@ -7,11 +7,13 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+//PLANET REPOSITORY CLASS
 public class Planetrepo {
 
-    // below line is the create a variable
-    // for dao and list for all courses.
+    //initialising DAO
     private Dao dao;
+
+    //CREATING ALL PLANET LIST which is a live read of planets in ROOM database.
     private LiveData<List<PlanetModal>> allPlanets;
 
     // creating a constructor for our variables
@@ -22,32 +24,32 @@ public class Planetrepo {
         allPlanets = dao.getAllPlanets();
     }
 
-    // creating a method to insert the data to our database.
+    // METHOD CREATION TO INSERT PLANET DATA IN PLANET DAO INSTANCE
     public void insert(PlanetModal model) {
         new InsertPlanetAsyncTask(dao).execute(model);
     }
 
-    // creating a method to update data in database.
+    // METHOD CREATION TO UPDATE SELECTED PLANET IN DAO INSTANCE
     public void update(PlanetModal model) {
         new UpdatePlanetAsyncTask(dao).execute(model);
     }
 
-    // creating a method to delete the data in our database.
+    // method creation to delete SELECTED planet from DAO instance
     public void delete(PlanetModal model) {
         new DeletePlanetAsyncTask(dao).execute(model);
     }
 
-    // below is the method to delete all the courses.
+    // method creation to delete all planets from DAO instance
     public void deleteAllPlanets() {
         new DeleteAllPlanetsAsyncTask(dao).execute();
     }
 
-    // below method is to read all the courses.
+    // method to return all planets in List format
     public LiveData<List<PlanetModal>> getAllPlanets() {
         return allPlanets;
     }
 
-    // we are creating a async task method to insert new course.
+    // creating static method insert a planet into PLANET DAO INSTANCE
     private static class InsertPlanetAsyncTask extends AsyncTask<PlanetModal, Void, Void> {
         private Dao dao;
 
@@ -57,13 +59,13 @@ public class Planetrepo {
 
         @Override
         protected Void doInBackground(PlanetModal... model) {
-            // below line is use to insert our modal in dao.
+            // calling method to insert planet into planet modal
             dao.insert(model[0]);
             return null;
         }
     }
 
-    // we are creating a async task method to update our course.
+    // static class to update selected planet in PLANET DAO INSTANCE
     private static class UpdatePlanetAsyncTask extends AsyncTask<PlanetModal, Void, Void> {
         private Dao dao;
 
@@ -73,14 +75,13 @@ public class Planetrepo {
 
         @Override
         protected Void doInBackground(PlanetModal... models) {
-            // below line is use to update
-            // our modal in dao.
+            // update planet info in planet modal
             dao.update(models[0]);
             return null;
         }
     }
 
-    // we are creating a async task method to delete course.
+    //create a static method to delete ONE planet from planet DAO instance
     private static class DeletePlanetAsyncTask extends AsyncTask<PlanetModal, Void, Void> {
         private Dao dao;
 
@@ -90,14 +91,13 @@ public class Planetrepo {
 
         @Override
         protected Void doInBackground(PlanetModal... models) {
-            // below line is use to delete
-            // our course modal in dao.
+            //delete selected planet from modal
             dao.delete(models[0]);
             return null;
         }
     }
 
-    // we are creating a async task method to delete all courses.
+    //create a static class to delete all planets from planet DAO instance
     private static class DeleteAllPlanetsAsyncTask extends AsyncTask<Void, Void, Void> {
         private Dao dao;
         private DeleteAllPlanetsAsyncTask(Dao dao) {
@@ -105,8 +105,7 @@ public class Planetrepo {
         }
         @Override
         protected Void doInBackground(Void... voids) {
-            // on below line calling method
-            // to delete all courses.
+            //call method to delete all planets from DAO instance
             dao.deleteAllPlanets();
             return null;
         }

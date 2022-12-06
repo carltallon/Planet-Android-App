@@ -10,43 +10,42 @@ import java.util.List;
 
 public class ViewModal extends AndroidViewModel {
 
-    // creating a new variable for course repository.
-    private Planetrepo repository;
-
-    // below line is to create a variable for live
-    // data where all the courses are present.
+    //
     private LiveData<List<PlanetModal>> allPlanets;
 
-    // constructor for our view modal.
+    //
+    private Planetrepo repository;
+
+    //
     public ViewModal(@NonNull Application application) {
         super(application);
         repository = new Planetrepo(application);
         allPlanets = repository.getAllPlanets();
     }
 
-    // below method is use to insert the data to our repository.
+    // method to insert into planet modal
     public void insert(PlanetModal model) {
         repository.insert(model);
     }
 
-    // below line is to update data in our repository.
-    public void update(PlanetModal model) {
-        repository.update(model);
-    }
-
-    // below line is to delete the data in our repository.
+    // method to delete from planet modal
     public void delete(PlanetModal model) {
         repository.delete(model);
     }
 
-    // below method is to delete all the courses in our list.
-    public void deleteAllPlanets() {
-        repository.deleteAllPlanets();
+    // method to update selected planet from planet model
+    public void update(PlanetModal model) {
+        repository.update(model);
     }
 
-    // below method is to get all the courses in our list.
+    // method to return all live planets in list format
     public LiveData<List<PlanetModal>> getAllPlanets() {
         return allPlanets;
+    }
+
+    // method to delete all planets from model
+    public void deleteAllPlanets() {
+        repository.deleteAllPlanets();
     }
 }
 

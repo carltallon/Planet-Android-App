@@ -7,13 +7,13 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <!--recycler view to display our data-->
+    <!---->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idRVPlanets"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <!--fab to add new courses-->
+    <!---->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addplanetbutton"
         android:layout_width="100dp"
